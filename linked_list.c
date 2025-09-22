@@ -31,7 +31,7 @@
         fourth->data=7;
         fourth->next=NULL;
 
-         return linkedlist(first);
+         linkedlist(first);
     }
 
 
