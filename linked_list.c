@@ -268,3 +268,79 @@
      first=inseratindex(first,24,3);
      linkedlist(first);
   }
+
+  //stacks using array
+  #include <stdio.h>
+#include <stdlib.h>
+
+
+struct Stack 
+{
+    int size;
+    int top;
+    int * arr;
+};
+
+
+int isEmpty(struct Stack * ptr){
+    if(ptr->top==-1){
+        return 1;
+    }
+    else{return 0;}
+}
+
+
+int isFull(struct Stack * ptr){
+    if(ptr->top==ptr->size-1){
+        return 1;
+    }
+    else{return 0;}
+}
+
+struct Stack * push (struct Stack * ptr, int val){
+    if(isFull(ptr)){
+       printf("Stack Overflow.\n");
+    }
+    else{
+        ptr->top++;
+        ptr->arr[ptr->top]=val;
+        printf("%d added to stack.\n",val);
+        return ptr;
+    }
+}
+
+struct Stack * pop (struct Stack * ptr){
+    if(isEmpty(ptr)){
+        printf("Stack Underflow.\n");
+    }
+    else{
+        int x = ptr->arr[ptr->top];
+        ptr->top--;
+        printf("%d popped from stack.\n",x);
+        return ptr;
+    }
+}
+
+
+int main () {
+    struct Stack *sp = (struct Stack *)malloc(sizeof(struct Stack));
+    sp->size = 5;
+    sp->top = -1;
+    sp->arr = (int *)malloc(sp->size * sizeof(int));
+
+    // Test push and pop operations
+    push(sp, 47);
+    push(sp, 32);
+    push(sp, 3);
+    push(sp, 2);
+    push(sp, 1);
+    pop(sp);
+    // Should show underflow
+
+    // Free allocated memory
+    free(sp->arr);
+    free(sp);
+
+    
+}
+
