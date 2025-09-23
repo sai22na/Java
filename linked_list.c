@@ -344,3 +344,101 @@ int main () {
     
 }
 
+//deletion of node at an index
+struct node{
+        int data;
+        struct node*next;
+    };
+    void linkedlist(struct node*ptr){
+        while(ptr!=NULL){
+        printf("Element: %d\n",ptr->data);
+        ptr=ptr->next;}
+    }
+    
+    struct node*DelAtIndex(struct node*first,int index){
+        int i=0;
+        
+        struct node*p=first;
+        struct node*ptr=first->next;
+        while(i!=index-1){
+            p=p->next;
+            ptr=ptr->next;
+            i++;
+        }
+        p->next=ptr->next;
+        free(ptr);
+        return first;
+    }
+    int main()
+    {
+        struct node*first;
+        struct node*second;
+        struct node*third;
+        struct node*fourth;
+          
+        first=(struct node *)malloc(sizeof(struct node));
+        second=(struct node *)malloc(sizeof(struct node));
+        third=(struct node *)malloc(sizeof(struct node));
+        fourth=(struct node *)malloc(sizeof(struct node));
+
+        first->data=7;
+        first->next=second;
+        second->data=11;
+        second->next=third;
+        third->data=10;
+        third->next=fourth;
+        fourth->data=19;
+        fourth->next=NULL;
+
+         DelAtIndex(first,2);
+         linkedlist(first);
+    }
+
+    //deleting a node at first 
+     #include <stdio.h>
+    #include <stdlib.h>
+    struct node{
+        int data;
+        struct node*next;
+    };
+    void linkedlist(struct node*ptr){
+        printf("Current linked list is: \n");
+        while(ptr!=NULL){
+        printf("Element: %d\n",ptr->data);
+        ptr=ptr->next;}
+    }
+    
+    struct node*DelAtFirst(struct node*first){
+        
+        
+        struct node*p=first;
+        first=first->next;
+        free(p);
+        return first;
+    }
+    int main()
+    {
+        struct node*first;
+        struct node*second;
+        struct node*third;
+        struct node*fourth;
+          
+        first=(struct node *)malloc(sizeof(struct node));
+        second=(struct node *)malloc(sizeof(struct node));
+        third=(struct node *)malloc(sizeof(struct node));
+        fourth=(struct node *)malloc(sizeof(struct node));
+
+        first->data=7;
+        first->next=second;
+        second->data=11;
+        second->next=third;
+        third->data=10;
+        third->next=fourth;
+        fourth->data=19;
+        fourth->next=NULL;
+         
+         first = DelAtFirst(first);
+         linkedlist(first);
+         
+    }
+
