@@ -222,8 +222,8 @@
    struct node{
        int data;
        struct node*next;
-   };
-  void linkedlist(struct node*ptr){
+   };  
+  void   linkedlist(struct node*ptr){
       while(ptr!=NULL){
           printf("elenement %d \n",ptr->data);
           ptr=ptr->next;}
@@ -441,4 +441,75 @@ struct node{
          linkedlist(first);
          
     }
+    
+    #include <stdio.h>
+#include<stdlib.h>
 
+struct queue{
+    int size;
+    int r;
+    int f;
+    int*arr;
+};
+    
+    int Isfull(struct queue*q){
+        if(q->r==q->size-1){return 1;}
+        return 0;}
+        
+        void enqueue(struct queue*q,int val){
+            if (Isfull(q)){
+                printf("full");}
+                else{
+                    q->r++;
+                    q->arr[q->r]=val;
+                    printf("enqueued element %d\n",val);
+                }
+            }
+            
+        int Isempty(struct queue*q){
+            if(q->r==q->f){
+                return 1;}
+                return 0;}
+                
+            int dequeue(struct queue*q){
+                    int a=-1;
+                    if (Isempty(q)){
+                        printf("empty");}
+                        else{
+                            q->f++;
+                            a=q->arr[q->f];
+                            printf("dequeing %d\n",a);
+                        }
+                            return a;
+                        }
+                        
+                        
+            void display(struct queue *q){
+                printf("Queue: \n");
+                for(int i=q->f+1;i<=q->r;i++){
+                    printf("%d\n",q->arr[i]);
+                }
+            }
+                    
+    
+                int main(){
+                struct queue q;
+                q.size=10;
+                q.r=q.f=-1;
+                q.arr=(int*)malloc(q.size*(sizeof(int)));
+                
+                enqueue(&q,1);
+                enqueue(&q,2);
+                enqueue(&q,3);
+               // printf("array is %d %d %d",&q,&q,&q);
+                dequeue(&q);
+                dequeue(&q);
+                enqueue(&q,24);
+                enqueue(&q,12);
+                dequeue(&q);
+                
+                display(&q);
+                
+                return 0;
+            
+            }
